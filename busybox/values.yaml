@@ -1,0 +1,4 @@
+cronjob_name: hello
+container_name: hello
+image:
+  tag: 1.32

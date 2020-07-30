@@ -1,0 +1,19 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Values.cronjob_name }}
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 10
+      template:
+        spec:
+          containers:
+          - name: {{ .Values.container_name }}
+            image: busybox:{{ .Values.image.tag }}
+            args:
+            - /bin/sh
+            - -c
+            - uname
+          restartPolicy: OnFailure
